@@ -74,6 +74,9 @@ class Flow(distributions.Distribution):
             noise = nsf_utils.merge_leading_dims(noise, num_dims=2)
             context = nsf_utils.repeat_rows(context, num_reps=num_samples)
 
+        noise=noise.to('cuda')
+        if context is not None:
+            context=context.to('cuda')
         samples, logabsdet = self._transform.inverse(noise, context=context)
 
         if context is not None:
@@ -186,6 +189,9 @@ class FlowDataTransform(distributions.Distribution):
             noise = nsf_utils.merge_leading_dims(noise, num_dims=2)
             context = nsf_utils.repeat_rows(context, num_reps=num_samples)
 
+        noise=noise.to('cuda')
+        if context is not None:
+            context=context.to('cuda')
         samples, logabsdet = self._transform.inverse(noise, context=context)
 
         if context is not None:

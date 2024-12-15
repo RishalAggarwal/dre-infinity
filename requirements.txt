@@ -1,8 +1,7 @@
 tensorflow_gan==2.0.0
 six==1.15.0
 matplotlib==3.3.4
-numpy==1.19.2
-torch==1.9.0+cu111
+torch==1.12.0+cu113
 torchvision==0.2.1
 absl_py==0.12.0
 torchdiffeq==0.2.2

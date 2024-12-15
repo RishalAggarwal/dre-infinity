@@ -179,7 +179,9 @@ class NaiveLinear(Linear):
         batch_size = inputs.shape[0]
         outputs = inputs - self.bias
         # outputs, lu = torch.gesv(outputs.t(), self._weight)  # Linear-system solver.
-        outputs, lu = torch.solve(outputs.t(), self._weight)
+        outputs = torch.linalg.solve(self._weight,outputs.t())
+        # get the lu decomposition with torch.lu
+        lu,pivots=torch.lu(self._weight)
         outputs = outputs.t()
         # The linear-system solver returns the LU decomposition of the weights, which we
         # can use to obtain the log absolute determinant directly.
